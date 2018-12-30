@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.RDS" Version="3.3.37.7" />
     <PackageReference Include="AWSSDK.SecretsManager" Version="3.3.2.34" />
   </ItemGroup>
 

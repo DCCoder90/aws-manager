@@ -7,5 +7,6 @@ namespace AWSManager.Interfaces
     public interface IAwsManager
     {
         ISecretManager Secrets{ get; }
+        IDatabaseManager Databases{ get; }
     }
 }

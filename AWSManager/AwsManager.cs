@@ -10,6 +10,7 @@ namespace AWSManager
     public class AwsManager : IAwsManager
     {
         private ISecretManager _secretManager;
+        private IDatabaseManager _databaseManager;
 
         public AwsManager()
         {
@@ -23,6 +24,10 @@ namespace AWSManager
 
         public ISecretManager Secrets{
             get{ return _secretManager; }
+        }
+
+        public IDatabaseManager Databases{
+            get{ return _databaseManager; }
         }
     }
 }
