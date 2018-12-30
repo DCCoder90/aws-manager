@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Amazon;
+using Amazon.Runtime;
+using Amazon.SecretsManager;
+using Amazon.SecretsManager.Model;
+using AWSManager.Interfaces;
+
+namespace AWSManager
+{
+    internal class SecretManager : ISecretManager
+    {
+        private readonly AWSCredentials _credentials;
+        private readonly AmazonSecretsManagerConfig _config;
+        private readonly AmazonSecretsManagerClient _client;
+
+        public SecretManager(AWSCredentials creds)
+        {
+            _credentials = creds;
+            _config = new AmazonSecretsManagerConfig { RegionEndpoint = RegionEndpoint.USEast2 };
+            _client = new AmazonSecretsManagerClient(_credentials,_config);
+        }
+
+        public string GetSecret(string secretName)
+        {
+            var request = new GetSecretValueRequest
+            {
+                SecretId = secretName
+            };
+
+            GetSecretValueResponse response = null;
+            response = Task.Run(async () => await _client.GetSecretValueAsync(request)).Result;
+            return response?.SecretString;
+        }
+
+        public string GetSecretId(string secretName)
+        {
+            var request = new GetSecretValueRequest
+            {
+                SecretId = secretName
+            };
+
+            GetSecretValueResponse response = null;
+            response = Task.Run(async () => await _client.GetSecretValueAsync(request)).Result;
+            return response?.VersionId;
+        }
+
+        public string StoreSecret(string secret, string name, string description)
+        {
+            var request = new CreateSecretRequest(){Name = name, SecretString = secret, Description = description};
+            var response = Task.Run(async()=> await _client.CreateSecretAsync(request)).Result;
+
+            return response?.Name;
+        }
+
+        public DateTime? DeleteSecret(string secretId)
+        {
+            var request = new DeleteSecretRequest(){
+                SecretId = secretId, ForceDeleteWithoutRecovery = true
+            };
+
+            var response = Task.Run(async () => await _client.DeleteSecretAsync(request)).Result;
+
+            return response?.DeletionDate;
+        }
+    }
+}
