@@ -5,14 +5,10 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AWSManager", "AWSManager\AWSManager.csproj", "{14DC0FB7-A163-4263-9FCF-D8313E2C670D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3E08A80A-3E89-42C8-A67E-3DC60CE4C006}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0662DA7-0403-4751-A690-6182362EE0E1}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSManager.Integration.Tests", "AWSManager.Integration.Tests\AWSManager.Integration.Tests.csproj", "{C1BB6B21-27D4-4063-8275-5B8FEDC434AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,16 +20,9 @@ Global
 		{14DC0FB7-A163-4263-9FCF-D8313E2C670D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14DC0FB7-A163-4263-9FCF-D8313E2C670D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14DC0FB7-A163-4263-9FCF-D8313E2C670D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1BB6B21-27D4-4063-8275-5B8FEDC434AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1BB6B21-27D4-4063-8275-5B8FEDC434AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1BB6B21-27D4-4063-8275-5B8FEDC434AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1BB6B21-27D4-4063-8275-5B8FEDC434AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C1BB6B21-27D4-4063-8275-5B8FEDC434AB} = {3E08A80A-3E89-42C8-A67E-3DC60CE4C006}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D649E937-31BC-4E7E-B4D5-5C63462989D6}

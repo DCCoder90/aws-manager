@@ -9,5 +9,6 @@ namespace AWSManager.Interfaces
         ISecretManager Secrets{ get; }
         IDatabaseManager Databases{ get; }
         IIAMManager IAMs{ get; }
+        string GenerateDbCluster(string clientName, string identifier, string prefix = "LW");
     }
 }
