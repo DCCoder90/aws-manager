@@ -36,5 +36,25 @@ namespace AWSManager.Interfaces
         /// <param name="secretId"></param>
         /// <returns></returns>
         DateTime? DeleteSecret(string secretId);
+
+        /// <summary>
+        /// Stores keyvalue pair secret and returns name
+        /// </summary>
+        /// <param name="secret"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <returns></returns>
+        string StoreSecret(IDictionary<string, string> secret, string name, string description);
+
+        /// <summary>
+        /// Returns the keyvalue pair secret saved
+        /// </summary>
+        /// <param name="secretName"></param>
+        /// <returns></returns>
+        IDictionary<string, string> GetSecrets(string secretName);
+
+        string UpdateSecret(string secretId, IDictionary<string, string> secret, string description);
+
+        string UpdateSecret(string secretId, string secret, string description);
     }
 }

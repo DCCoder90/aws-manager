@@ -73,7 +73,8 @@ namespace AWSManager
                 MasterUserPassword = masterPass,
                 Port = 3306,
                 StorageEncrypted = EncryptStorage,
-                Tags = _tags
+                Tags = _tags,
+                EnableIAMDatabaseAuthentication = true
             };
 
             var response = Task.Run(async () => await _client.CreateDBClusterAsync(request)).Result;

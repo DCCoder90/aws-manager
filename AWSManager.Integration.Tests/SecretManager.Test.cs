@@ -16,10 +16,10 @@ namespace AWSManager.Integration.Tests
         }
 
         
-        //[Fact]
+        [Fact]
         public void CreateSecret()
         {
-            var resp = _sut.Secrets.StoreSecret("testSecret", "test2", "Simply a test secret to see if everything works");
+            var resp = _sut.Secrets.StoreSecret("testsecret:testSecret", "test3", "Simply a test secret to see if everything works");
             Assert.Equal("test",resp);
         }
 

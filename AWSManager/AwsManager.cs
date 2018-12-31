@@ -11,6 +11,7 @@ namespace AWSManager
     {
         private ISecretManager _secretManager;
         private IDatabaseManager _databaseManager;
+        private IIAMManager _iamManager;
 
         public AwsManager()
         {
@@ -19,6 +20,8 @@ namespace AWSManager
             if (chain.TryGetAWSCredentials(Definition.AWSProfile, out awsCredentials))
             {
                 _secretManager = new SecretManager(awsCredentials);
+                _databaseManager = new DatabaseManager(awsCredentials);
+                _iamManager = new IAMManager(awsCredentials);
             }
         }
 
@@ -28,6 +31,11 @@ namespace AWSManager
 
         public IDatabaseManager Databases{
             get{ return _databaseManager; }
+        }
+
+        public IIAMManager IAMs
+        {
+            get { return _iamManager; }
         }
     }
 }

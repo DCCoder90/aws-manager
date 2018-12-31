@@ -8,5 +8,6 @@ namespace AWSManager.Interfaces
     {
         ISecretManager Secrets{ get; }
         IDatabaseManager Databases{ get; }
+        IIAMManager IAMs{ get; }
     }
 }
