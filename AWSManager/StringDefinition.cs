@@ -13,5 +13,6 @@ namespace AWSManager
         public const string MasterPass = "masterPass";
         public const string Endpoint = "dbEndpoint";
         public const string Port = "dbPort";
+        public const string ClusterIdentifier = "clusterId";
     }
 }

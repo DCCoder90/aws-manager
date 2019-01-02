@@ -14,16 +14,21 @@ namespace AWSManager
         private IDatabaseManager _databaseManager;
         private IIAMManager _iamManager;
 
-        public AwsManager()
+        public AwsManager(string accesskey = null, string secretkey = null)
         {
-            var chain = new CredentialProfileStoreChain();
-            AWSCredentials awsCredentials;
-            if (chain.TryGetAWSCredentials(Definition.AWSProfile, out awsCredentials))
+            AWSCredentials awsCredentials = null;
+
+            if (!string.IsNullOrEmpty(accesskey) && !string.IsNullOrEmpty(secretkey))
             {
-                _secretManager = new SecretManager(awsCredentials);
-                _databaseManager = new DatabaseManager(awsCredentials);
-                _iamManager = new IAMManager(awsCredentials);
+                awsCredentials = new BasicAWSCredentials(accesskey, secretkey);
+            }else{
+                var chain = new CredentialProfileStoreChain();
+                chain.TryGetAWSCredentials(Definition.AWSProfile, out awsCredentials);
             }
+
+            _secretManager = new SecretManager(awsCredentials);
+            _databaseManager = new DatabaseManager(awsCredentials);
+            _iamManager = new IAMManager(awsCredentials);
         }
 
         public ISecretManager Secrets{
@@ -53,6 +58,7 @@ namespace AWSManager
                 {StringDefinition.Username,user.UserName },
                 {StringDefinition.MasterUser, masterUser },
                 {StringDefinition.MasterPass, masterPass },
+                {StringDefinition.ClusterIdentifier, cluster.DBClusterIdentifier },
                 {StringDefinition.Endpoint, cluster.Endpoint },
                 {StringDefinition.Port, cluster.Port.ToString() }
             };
@@ -60,6 +66,17 @@ namespace AWSManager
             var storedSecret =
                 _secretManager.StoreSecret(secret, $"{prefix}{clientName}", $"{prefix} - {clientName} stored secrets.");
             return storedSecret;
+        }
+
+        public DateTime? RemoveCluster(string secretName)
+        {
+            var secrets = _secretManager.GetSecrets(secretName);
+
+            _databaseManager.DeleteCluster(secrets[StringDefinition.ClusterIdentifier]);
+            _iamManager.DeleteUser(secrets[StringDefinition.Username]);
+            var secretId = _secretManager.GetSecretId(secretName);
+            var removalDate = _secretManager.DeleteSecret(secretId);
+            return removalDate;
         }
     }
 }
