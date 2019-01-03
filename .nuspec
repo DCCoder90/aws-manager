@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <!-- Required elements-->
+        <id>awsmanager</id>
+        <version>1.0.0</version>
+        <description>Facilitates communication between AWS services and DCCoder services</description>
+        <authors>DCCoders</authors>
+		<projectUrl>https://gitlab.com/dccoders/awsmanager</projectUrl>
+		<tags>aws</tags>
+		<language>en-US</language>
+    </metadata>
+	    <files>
+        <file src="AWSManager\*" target="lib" />
+    </files>
+</package>
